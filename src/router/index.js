@@ -15,7 +15,7 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: 'postist',
+          path: 'postlist',
           name: 'postlistPage',
           component:PostList
         },

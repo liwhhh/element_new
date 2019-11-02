@@ -1,27 +1,19 @@
 <template>
   <el-container class="wrapper">
     <el-aside width="200px">
-      <el-row>
-        <el-col>
-          <div class="title">黑马程序</div>
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            background-color="#f09f34"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-          >
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
-              <span slot="title">文章列表</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-setting"></i>
-              <span slot="title">发布文章</span>
-            </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
+          <div class="logo">黑马程序</div>
+
+          <el-menu>
+                <el-menu-item index="2" @click="$router.push('/postlist')">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">文章列表</span>
+                </el-menu-item>
+                <el-menu-item index="4" @click="$router.push('/editpost')">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">发布文章</span>
+                </el-menu-item>
+            </el-menu>
+   
     </el-aside>
     <el-container>
       <el-header>
@@ -30,7 +22,9 @@
          <img class="avatar" v-else src="../assets/logo.png" alt="">
          <span class="nickname">用户名: {{user.nickname}}</span>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -55,11 +49,12 @@
     background: rgb(240, 159, 52);
   }
   .el-menu{
+    background: #f09f34;
     position: relative;
     width: 100%;
     top: 0;
   }
-  .title{
+  .logo{
    width: 200px;
    height: 60px;
    line-height: 60px;
@@ -78,4 +73,7 @@
       margin-right: 20px;
     }
   }
+
+
+
 </style>

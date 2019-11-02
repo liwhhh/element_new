@@ -11,8 +11,23 @@ Vue.use(ElementUI);
 Vue.prototype.$axios = axios;// 绑定到原型
 axios.defaults.baseURL = "http://111.230.181.206:3000";//设置默认的 api 域名
 
-
 Vue.config.productionTip = false
+
+// 导航守卫拦截,没有token跳转到登录页
+// 1.去的路由是login且不存在token就跳转到login,其他可以下一步
+router.beforeEach((to, from, next) => {
+  if (to.path != '/login') {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+})
+
 
 /* eslint-disable no-new */
 new Vue({

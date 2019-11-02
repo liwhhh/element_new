@@ -45,7 +45,7 @@
           if (res.data.message == "登录成功") {
             //登录成功,把token和user存储到本地存储用字符串格式存储
             // 然后跳转到主页
-            localStorage.setItem("token", JSON.stringify(res.data.data.token));
+            localStorage.setItem("token",res.data.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.data.user));
             this.$router.push("/");
           }

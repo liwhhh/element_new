@@ -24,14 +24,25 @@
       </el-row>
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <!-- 头部,拿到本地存储的user转对象, 在这判断if有头像加这个ip地址加头像,如果没有就默认一个头像, 用户名也渲染上 -->
+         <img class="avatar" v-if="user.head_img" :src="$axios.defaults.baseURL+user.head_img" alt="">
+         <img class="avatar" v-else src="../assets/logo.png" alt="">
+         <span class="nickname">用户名: {{user.nickname}}</span>
+      </el-header>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-  export default {};
+  export default {
+    data(){
+      return{
+        user:JSON.parse(localStorage.getItem('user'))
+      }
+    }
+  };
 </script>
 
 <style lang="less" scoped>
@@ -57,5 +68,14 @@
   }
   .el-header {
     background: rgb(255, 199, 95);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .avatar{
+      width: 45px;
+      height: 45px;
+      border-radius:23px;
+      margin-right: 20px;
+    }
   }
 </style>
